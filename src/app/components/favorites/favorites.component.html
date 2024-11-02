@@ -1,0 +1,38 @@
+<div class="favorites__container">
+  <span class="favorites__title">Here Are Your</span>
+  <span class="favorites__title"
+    ><img
+      src="icons/BigVector.png"
+      alt=""
+      width="40px"
+      class="favorites__vector"
+    /><span class="orange__text">Favorites</span></span
+  >
+</div>
+
+<div class="home__container__text">
+  <span class="little__text">Saved by you</span>
+  <span class="big__text">Your favorites list</span>
+</div>
+
+<div class="pictures__container">
+  @for (picture of pictures; track picture.id) {
+    <div class="picture__item">
+      <a href="" class="link__menu">
+        <img [src]="picture.image_url" alt="" class="image__item" />
+      </a>
+      <div class="picture__text__container">
+        <div class="picture__text__title">{{ picture.title }}</div>
+        <span class="picture__text__artist">{{ picture.artist_title }}</span>
+        <span class="picture__text_public">Public</span>
+      </div>
+      <div class="picture__favorites">
+        <button class="button__favorites" (click)="setToFavorites(picture)">
+          <img src="icons/Vector.png" alt="" />
+        </button>
+      </div>
+    </div>
+  }
+</div>
+
+<!-- (click)="setToFavorites(picture)" -->

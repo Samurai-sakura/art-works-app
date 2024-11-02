@@ -1,0 +1,19 @@
+<div class="header">
+  <div class="header__container">
+    <a href=""><img src="icons/museum-logo 2.svg" alt="" /> </a>
+    <div class="header__links">
+      <a href="" *ngIf="currentPath !== 'home'"
+        ><img src="icons/home.png" class="header__load" alt="Home" /><span
+          class="header__text"
+          >Home</span
+        ></a
+      >
+      <a [routerLink]="['favorites']" routerLinkActive="active"
+        ><img src="icons/Vector.png" class="header__load" alt="Vector" /><span
+          class="header__text"
+          >Your favorites</span
+        ></a
+      >
+    </div>
+  </div>
+</div>
