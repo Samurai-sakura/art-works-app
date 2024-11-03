@@ -11,6 +11,7 @@ import { pictureCardMapper } from '../../utils/picture-mapper';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { LoadingSpinerComponent } from '../loading-spiner/loading-spiner.component';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ import { RouterLink } from '@angular/router';
     LoadingSpinerComponent,
     CommonModule,
     RouterLink,
+    FormsModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -37,12 +39,14 @@ export class HomeComponent implements OnInit {
     prev_url: '',
     current_page: 0,
   };
+  public searchPictures: PictureInterface[] = [];
   public isPagination = false;
   public isPicture = true;
   public config: Config = {
     iiif_url: '',
     website_url: '',
   };
+  public searchString = "";
   public loading = false;
   public pageNumber = 1;
   public paginationPictures: PictureInterface[] = [];
@@ -50,22 +54,7 @@ export class HomeComponent implements OnInit {
     private responseService: ResponseService,
     private paginationService: PaginationService,
     private localStorageService: LocalStorageService
-  ) {
-    //   this.loading = true;
-    //   this.responseService.getData().subscribe(res =>{
-    //   this.paginationParameters = res.pagination;
-    //   this.config = res.config;
-    //   this.pictures = pictureCardMapper(res.data, this.config);
-    //   this.loading = false;
-    // });
-    // this.loading = true;
-    // this.paginationService.getData(this.pageNumber).subscribe(res =>{
-    //   this.paginationPictures = res.data;
-    //   this.paginationPictures = this.paginationPictures.slice(0, 3);
-    //   this.paginationPictures = pictureCardMapper(this.paginationPictures, this.config);
-    //   this.loading = false;
-    // });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loading = true;
@@ -73,6 +62,7 @@ export class HomeComponent implements OnInit {
       this.paginationParameters = res.pagination;
       this.config = res.config;
       this.pictures = pictureCardMapper(res.data, this.config);
+      this.searchPictures = this.pictures;
       this.loading = false;
     });
     this.loading = true;
@@ -85,6 +75,27 @@ export class HomeComponent implements OnInit {
       );
       this.loading = false;
     });
+  }
+
+  public searchArts(){
+    if(!this.searchString){
+      return;
+    }
+    this.searchPictures = this.pictures.filter(picture => 
+      picture.title.toLowerCase().includes(this.searchString.toLowerCase())
+    );
+    this.searchPictures = this.searchPictures.concat(this.paginationPictures.filter(picture => 
+      picture.title.toLowerCase().includes(this.searchString.toLowerCase())
+    ));
+    this.searchPictures = this.searchPictures.concat(this.pictures.filter(picture => 
+      picture.artist_title.toLowerCase().includes(this.searchString.toLowerCase())
+    ));
+    this.searchPictures = this.searchPictures.concat(this.paginationPictures.filter(picture => 
+      picture.artist_title.toLowerCase().includes(this.searchString.toLowerCase())
+    ));
+    this.searchPictures = this.searchPictures.filter((item, index, self) =>
+      index === self.findIndex((t) => (t.id === item.id))
+    );
   }
 
   public onPageChanged(pageNumber: number) {

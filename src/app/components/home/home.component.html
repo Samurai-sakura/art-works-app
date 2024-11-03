@@ -6,14 +6,40 @@
   </div>
 </div>
 
-<div class="home__container">
+<div class="home__container__input">
   <div class="input__container">
     <input
       type="text"
       class="home__input"
       placeholder="Search Art, Artist, Work..."
+      [(ngModel)]="searchString"
+      (input)="searchArts()"
     /><img src="icons/search.png" class="home__input__image" alt="Поиск" />
   </div>
+</div>
+
+<div class="pictures__container" *ngIf="searchString && searchString !== ' ' && searchString.length > 1">
+  @for (picture of searchPictures; track picture.id) {
+    <div class="picture__item">
+      <a
+        class="link__menu"
+        [routerLink]="['details', picture.id]"
+        routerLinkActive="active"
+      >
+        <img [src]="picture.image_url" alt="No image" class="image__item" />
+      </a>
+      <div class="picture__text__container">
+        <div class="picture__text__title">{{ picture.title }}</div>
+        <span class="picture__text__artist">{{ picture.artist_title }}</span>
+        <span class="picture__text_public">Public</span>
+      </div>
+      <div class="picture__favorites">
+        <button class="button__favorites" (click)="setToFavorites(picture)">
+          <img src="icons/Vector.png" alt="" />
+        </button>
+      </div>
+    </div>
+  }
 </div>
 
 <div class="home__container__text">
