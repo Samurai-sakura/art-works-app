@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ResponseService } from '../../services/response.service';
 import { HttpClientModule } from '@angular/common/http';
-import { PictureInterface } from '../../interfaces/data.interface';
-import { Pagination } from '../../interfaces/pagination.interface';
+import { PictureInterface } from '@interfaces/data.interface';
+import { Pagination } from '@interfaces/pagination.interface';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule, SlicePipe } from '@angular/common';
-import { PaginationService } from '../../services/pagination.service';
-import { Config } from '../../interfaces/config.interface';
-import { pictureCardMapper } from '../../utils/picture-mapper';
-import { LocalStorageService } from '../../services/local-storage.service';
-import { LoadingSpinerComponent } from '../loading-spiner/loading-spiner.component';
+import { Config } from '@interfaces/config.interface';
+import { pictureCardMapper } from '@utils/picture-mapper';
+import { LoadingSpinerComponent } from '@components/loading-spiner/loading-spiner.component';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { LocalStorageService } from '@services/local-storage.service'; 
+import { PaginationService } from '@services/pagination.service';
+import { ResponseService } from '@services/response.service';
+ 
 @Component({
   selector: 'app-home',
   standalone: true,

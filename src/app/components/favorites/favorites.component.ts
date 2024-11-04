@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { PictureInterface } from '../../interfaces/data.interface';
-import { LocalStorageService } from '../../services/local-storage.service';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { PictureInterface } from '@interfaces/data.interface';
+import { LocalStorageService } from '@services/local-storage.service';
 
 @Component({
   selector: 'app-favorites',
@@ -11,7 +11,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
   providers: [LocalStorageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FavoritesComponent {
+export class FavoritesComponent implements OnInit{
   public pictures: PictureInterface[] = [];
   constructor(private localStorageService: LocalStorageService) {}
 

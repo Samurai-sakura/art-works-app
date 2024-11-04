@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DetailsService } from '../../services/details.service';
-import { PictureInterface } from '../../interfaces/data.interface';
+import { DetailsService } from '@services/details.service';
+import { PictureInterface } from '@interfaces/data.interface';
 import { HttpClientModule } from '@angular/common/http';
-import { LoadingSpinerComponent } from '../loading-spiner/loading-spiner.component';
+import { LoadingSpinerComponent } from '@components/loading-spiner/loading-spiner.component';
 import { CommonModule } from '@angular/common';
-import { Config } from '../../interfaces/config.interface';
-import { Painter } from '../../interfaces/painter-info.interface';
-import { LocalStorageService } from '../../services/local-storage.service';
-import { onePictureCardMapper } from '../../utils/one-picture-mapper';
+import { Config } from '@interfaces/config.interface';
+import { Painter } from '@interfaces/painter-info.interface';
+import { LocalStorageService } from '@services/local-storage.service';
+import { onePictureCardMapper } from '@utils/one-picture-mapper';
 
 @Component({
   selector: 'app-details',
