@@ -1,10 +1,21 @@
 import { TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from './app.component';
+import { of } from 'rxjs';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [AppComponent], // Используйте imports для standalone компонента
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({ id: 1 }), // Мок параметров маршрута
+            url: of([{ path: 'art-museum' }]) // Мок для url, если требуется
+          }
+        }
+      ]
     }).compileComponents();
   });
 
