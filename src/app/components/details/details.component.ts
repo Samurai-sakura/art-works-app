@@ -29,6 +29,8 @@ export class DetailsComponent implements OnInit {
       lqip: '',
       alt_text: '',
     },
+    date_end: "",
+    date_start: "",
     date_display: '',
     place_of_origin: '',
     credit_line: '',
@@ -64,8 +66,7 @@ export class DetailsComponent implements OnInit {
         this.picture = res.data;
         this.config = res.config;
         this.picture = onePictureCardMapper(this.picture, this.config);
-        this.painter_info.main_reference_number =
-          this.picture.main_reference_number;
+        this.painter_info.main_reference_number = this.picture.date_start + "-" + this.picture.date_end;
         this.painter_info.painter_nationality = this.picture.place_of_origin;
         this.loading = false;
       });
