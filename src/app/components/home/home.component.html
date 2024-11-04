@@ -18,7 +18,7 @@
   </div>
 </div>
 
-<div class="pictures__container" *ngIf="searchString && searchString !== ' ' && searchString.length > 1">
+<div class="pictures__container__input" *ngIf="searchString && searchString !== ' ' && searchString.length > 1">
   @for (picture of searchPictures; track picture.id) {
     <div class="picture__item">
       <a
@@ -40,6 +40,12 @@
       </div>
     </div>
   }
+
+  <select name="sort" (change)="selectChanged($event)" class="input__select">
+    <option value="title">Отсортировать по названию</option>
+    <option value="author">Отсортировать по автору</option>
+    <option value="place">Отсортировать по стране</option>
+  </select>
 </div>
 
 <div class="home__container__text">

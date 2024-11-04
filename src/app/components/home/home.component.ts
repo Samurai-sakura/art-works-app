@@ -98,6 +98,41 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  public selectChanged(value: Event){
+    const target = value.target as HTMLSelectElement;
+    if(target.value === "title"){
+      this.searchPictures.sort((a, b) => {
+        if (a.title < b.title){
+          return -1;
+        }
+        if(a.title > b.title){
+          return 1;
+        }
+        return 0;
+      })
+    }else if(target.value === "author"){
+      this.searchPictures.sort((a, b) => {
+        if (a.artist_title < b.artist_title){
+          return -1;
+        }
+        if(a.artist_title > b.artist_title){
+          return 1;
+        }
+        return 0;
+      })
+    }else{
+      this.searchPictures.sort((a, b) => {
+        if (a.place_of_origin < b.place_of_origin){
+          return -1;
+        }
+        if(a.place_of_origin > b.place_of_origin){
+          return 1;
+        }
+        return 0;
+      })
+    }
+  }
+
   public onPageChanged(pageNumber: number) {
     this.paginationService.getData(pageNumber).subscribe((res) => {
       this.paginationPictures = res.data.splice(0, 3);
