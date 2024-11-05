@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { FavoritesComponent } from './favorites.component';
+import { FavoritesComponent } from "./favorites.component";
 
-describe('FavoritesComponent', () => {
+describe("FavoritesComponent", () => {
   let component: FavoritesComponent;
   let fixture: ComponentFixture<FavoritesComponent>;
 
@@ -16,7 +16,7 @@ describe('FavoritesComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

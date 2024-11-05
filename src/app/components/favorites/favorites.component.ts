@@ -1,17 +1,17 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { PictureInterface } from '@interfaces/data.interface';
-import { LocalStorageService } from '@services/local-storage.service';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { PictureInterface } from "@interfaces/data.interface";
+import { LocalStorageService } from "@services/local-storage.service";
 
 @Component({
-  selector: 'app-favorites',
+  selector: "app-favorites",
   standalone: true,
   imports: [],
-  templateUrl: './favorites.component.html',
-  styleUrl: './favorites.component.scss',
+  templateUrl: "./favorites.component.html",
+  styleUrl: "./favorites.component.scss",
   providers: [LocalStorageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FavoritesComponent implements OnInit{
+export class FavoritesComponent implements OnInit {
   public pictures: PictureInterface[] = [];
   constructor(private localStorageService: LocalStorageService) {}
 
@@ -20,7 +20,7 @@ export class FavoritesComponent implements OnInit{
   }
 
   public loadItems() {
-    const pictures = localStorage.getItem('favorites');
+    const pictures = localStorage.getItem("favorites");
     if (pictures) {
       this.pictures = JSON.parse(pictures).pictures;
     }

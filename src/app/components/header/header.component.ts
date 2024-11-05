@@ -1,16 +1,16 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
+import { CommonModule } from "@angular/common";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ActivatedRoute, RouterLink, RouterModule } from "@angular/router";
 
 @Component({
-  selector: 'app-header',
+  selector: "app-header",
   standalone: true,
   imports: [CommonModule, RouterModule, RouterLink],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  templateUrl: "./header.component.html",
+  styleUrl: "./header.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   public currentPath?: string;
 
   constructor(private router: ActivatedRoute) {}

@@ -1,6 +1,6 @@
-import { Config } from './config.interface';
-import { PictureInterface } from './data.interface';
-import { Pagination } from './pagination.interface';
+import { Config } from "./config.interface";
+import { PictureInterface } from "./data.interface";
+import { Pagination } from "./pagination.interface";
 
 export interface GetArtworksResponse {
   pagination: Pagination;

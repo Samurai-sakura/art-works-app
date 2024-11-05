@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'https://api.artic.edu/api/v1/artworks',
+  apiUrl: "https://api.artic.edu/api/v1/artworks",
 };

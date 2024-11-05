@@ -5,8 +5,8 @@ export interface PictureInterface {
     lqip: string;
     alt_text: string;
   };
-  date_start: string,
-  date_end: string,
+  date_start: string;
+  date_end: string;
   date_display: string;
   place_of_origin: string;
   credit_line: string;

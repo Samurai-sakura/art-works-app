@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { LoadingSpinerComponent } from './loading-spiner.component';
+import { LoadingSpinerComponent } from "./loading-spiner.component";
 
-describe('LoadingSpinerComponent', () => {
+describe("LoadingSpinerComponent", () => {
   let component: LoadingSpinerComponent;
   let fixture: ComponentFixture<LoadingSpinerComponent>;
 
@@ -16,7 +16,7 @@ describe('LoadingSpinerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

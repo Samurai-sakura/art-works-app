@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
-import { DetailsComponent } from './details.component';
-import { of } from 'rxjs';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ActivatedRoute } from "@angular/router";
+import { DetailsComponent } from "./details.component";
+import { of } from "rxjs";
 
-describe('DetailsComponent', () => {
+describe("DetailsComponent", () => {
   let component: DetailsComponent;
   let fixture: ComponentFixture<DetailsComponent>;
 
@@ -14,11 +14,11 @@ describe('DetailsComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            params: of({ id: 1 }), // Мок параметров маршрута
-            url: of([{ path: 'details' }]) // Мок для url
-          }
-        }
-      ]
+            params: of({ id: 1 }),
+            url: of([{ path: "details" }]),
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DetailsComponent);
@@ -26,9 +26,7 @@ describe('DetailsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
-
-  // Добавьте дополнительные тесты, если необходимо
 });

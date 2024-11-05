@@ -1,20 +1,20 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { PictureInterface } from '@interfaces/data.interface';
-import { Pagination } from '@interfaces/pagination.interface';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { CommonModule, SlicePipe } from '@angular/common';
-import { Config } from '@interfaces/config.interface';
-import { pictureCardMapper } from '@utils/picture-mapper';
-import { LoadingSpinerComponent } from '@components/loading-spiner/loading-spiner.component';
-import { RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { LocalStorageService } from '@services/local-storage.service'; 
-import { PaginationService } from '@services/pagination.service';
-import { ResponseService } from '@services/response.service';
- 
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
+import { PictureInterface } from "@interfaces/data.interface";
+import { Pagination } from "@interfaces/pagination.interface";
+import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
+import { CommonModule, SlicePipe } from "@angular/common";
+import { Config } from "@interfaces/config.interface";
+import { pictureCardMapper } from "@utils/picture-mapper";
+import { LoadingSpinerComponent } from "@components/loading-spiner/loading-spiner.component";
+import { RouterLink } from "@angular/router";
+import { FormsModule } from "@angular/forms";
+import { LocalStorageService } from "@services/local-storage.service";
+import { PaginationService } from "@services/pagination.service";
+import { ResponseService } from "@services/response.service";
+
 @Component({
-  selector: 'app-home',
+  selector: "app-home",
   standalone: true,
   imports: [
     HttpClientModule,
@@ -23,10 +23,10 @@ import { ResponseService } from '@services/response.service';
     LoadingSpinerComponent,
     CommonModule,
     RouterLink,
-    FormsModule
+    FormsModule,
   ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  templateUrl: "./home.component.html",
+  styleUrl: "./home.component.scss",
   providers: [ResponseService, PaginationService, LocalStorageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -35,16 +35,16 @@ export class HomeComponent implements OnInit {
   public paginationParameters: Pagination = {
     total: 0,
     limit: 0,
-    next_url: '',
-    prev_url: '',
+    next_url: "",
+    prev_url: "",
     current_page: 0,
   };
   public searchPictures: PictureInterface[] = [];
   public isPagination = false;
   public isPicture = true;
   public config: Config = {
-    iiif_url: '',
-    website_url: '',
+    iiif_url: "",
+    website_url: "",
   };
   public searchString = "";
   public loading = false;
@@ -77,59 +77,69 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public searchArts(){
-    if(!this.searchString){
+  public searchArts() {
+    if (!this.searchString) {
       return;
     }
-    this.searchPictures = this.pictures.filter(picture => 
+    this.searchPictures = this.pictures.filter((picture) =>
       picture.title.toLowerCase().includes(this.searchString.toLowerCase())
     );
-    this.searchPictures = this.searchPictures.concat(this.paginationPictures.filter(picture => 
-      picture.title.toLowerCase().includes(this.searchString.toLowerCase())
-    ));
-    this.searchPictures = this.searchPictures.concat(this.pictures.filter(picture => 
-      picture.artist_title.toLowerCase().includes(this.searchString.toLowerCase())
-    ));
-    this.searchPictures = this.searchPictures.concat(this.paginationPictures.filter(picture => 
-      picture.artist_title.toLowerCase().includes(this.searchString.toLowerCase())
-    ));
-    this.searchPictures = this.searchPictures.filter((item, index, self) =>
-      index === self.findIndex((t) => (t.id === item.id))
+    this.searchPictures = this.searchPictures.concat(
+      this.paginationPictures.filter((picture) =>
+        picture.title.toLowerCase().includes(this.searchString.toLowerCase())
+      )
+    );
+    this.searchPictures = this.searchPictures.concat(
+      this.pictures.filter((picture) =>
+        picture.artist_title
+          .toLowerCase()
+          .includes(this.searchString.toLowerCase())
+      )
+    );
+    this.searchPictures = this.searchPictures.concat(
+      this.paginationPictures.filter((picture) =>
+        picture.artist_title
+          .toLowerCase()
+          .includes(this.searchString.toLowerCase())
+      )
+    );
+    this.searchPictures = this.searchPictures.filter(
+      (item, index, self) => index === self.findIndex((t) => t.id === item.id)
     );
   }
 
-  public selectChanged(value: Event){
+  public selectChanged(value: Event) {
     const target = value.target as HTMLSelectElement;
-    if(target.value === "title"){
+    if (target.value === "title") {
       this.searchPictures.sort((a, b) => {
-        if (a.title < b.title){
+        if (a.title < b.title) {
           return -1;
         }
-        if(a.title > b.title){
+        if (a.title > b.title) {
           return 1;
         }
         return 0;
-      })
-    }else if(target.value === "author"){
+      });
+    } else if (target.value === "author") {
       this.searchPictures.sort((a, b) => {
-        if (a.artist_title < b.artist_title){
+        if (a.artist_title < b.artist_title) {
           return -1;
         }
-        if(a.artist_title > b.artist_title){
+        if (a.artist_title > b.artist_title) {
           return 1;
         }
         return 0;
-      })
-    }else{
+      });
+    } else {
       this.searchPictures.sort((a, b) => {
-        if (a.place_of_origin < b.place_of_origin){
+        if (a.place_of_origin < b.place_of_origin) {
           return -1;
         }
-        if(a.place_of_origin > b.place_of_origin){
+        if (a.place_of_origin > b.place_of_origin) {
           return 1;
         }
         return 0;
-      })
+      });
     }
   }
 

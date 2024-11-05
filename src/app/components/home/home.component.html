@@ -8,17 +8,20 @@
 
 <div class="home__container__input">
   <div class="input__container">
-      <input
-        type="text"
-        class="home__input"
-        placeholder="Search Art, Artist, Work..."
-        [(ngModel)]="searchString"
-        (input)="searchArts()"
-      /><img src="icons/search.png" class="home__input__image" alt="Поиск" />
+    <input
+      type="text"
+      class="home__input"
+      placeholder="Search Art, Artist, Work..."
+      [(ngModel)]="searchString"
+      (input)="searchArts()"
+    /><img src="icons/search.png" class="home__input__image" alt="Поиск" />
   </div>
 </div>
 
-<div class="pictures__container__input" *ngIf="searchString && searchString !== ' ' && searchString.length > 1">
+<div
+  class="pictures__container__input"
+  *ngIf="searchString && searchString !== ' ' && searchString.length > 1"
+>
   @for (picture of searchPictures; track picture.id) {
     <div class="picture__item">
       <a

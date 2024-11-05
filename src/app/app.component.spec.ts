@@ -1,25 +1,25 @@
-import { TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
-import { AppComponent } from './app.component';
-import { of } from 'rxjs';
+import { TestBed } from "@angular/core/testing";
+import { ActivatedRoute } from "@angular/router";
+import { AppComponent } from "./app.component";
+import { of } from "rxjs";
 
-describe('AppComponent', () => {
+describe("AppComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent], // Используйте imports для standalone компонента
+      imports: [AppComponent],
       providers: [
         {
           provide: ActivatedRoute,
           useValue: {
-            params: of({ id: 1 }), // Мок параметров маршрута
-            url: of([{ path: 'art-museum' }]) // Мок для url, если требуется
-          }
-        }
-      ]
+            params: of({ id: 1 }),
+            url: of([{ path: "art-museum" }]),
+          },
+        },
+      ],
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  it("should create the app", () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
@@ -28,15 +28,15 @@ describe('AppComponent', () => {
   it(`should have the 'art-museum' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('art-museum');
+    expect(app.title).toEqual("art-museum");
   });
 
-  it('should render title', () => {
+  it("should render title", () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Hello, art-museum'
+    expect(compiled.querySelector("h1")?.textContent).toContain(
+      "Hello, art-museum"
     );
   });
 });
